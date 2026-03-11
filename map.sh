@@ -16,3 +16,9 @@ ml purge
 ml CarveMe/1.6.6
 
 carve -o $OUT -g LB -v $OUT/F7_5.faa
+
+ml purge 
+ml miniconda
+
+source activate cobra
+python cobra_analysis.py
