@@ -1,7 +1,7 @@
 import cobra 
 import pandas as pd
 
-model_path = "work/lylab/cjn40747/metabolome/F7_5.xml"
+model_path = "/work/lylab/cjn40747/metabolome/F7_5.xml"
 model = cobra.io.read_sbml_model(model_path)
 
 def set_lb_medium(model, glucose=False):
