@@ -6,16 +6,18 @@ model_path = "/work/lylab/cjn40747/metabolome/F7_5.xml"
 model = cobra.io.read_sbml_model(model_path)
 
 GG_medium = {
-    "EX_glc__D_e": 55.5,
-    "EX_glu__L_e": 34.0,
-    "EX_mg2_e": 0.811,
-    "EX_so4_e": 0.811,
-    "EX_k_e": 3.67,
-    "EX_pi_e": 3.67,
-    "EX_na1_e": 3.42,
-    "EX_cl_e": 3.42,
-    "EX_ca2_e": 49.9,
-    "EX_h_e": 1000
+    "EX_glc__D_e": 10,
+    "EX_glu__L_e": 5,
+    "EX_mg2_e": 1000,
+    "EX_so4_e": 1000,
+    "EX_k_e": 1000,
+    "EX_pi_e": 1000,
+    "EX_na1_e": 1000,
+    "EX_cl_e": 1000,
+    "EX_ca2_e": 1000,
+    "EX_h2o_e": 1000,
+    "EX_h_e": 1000,
+    "EX_co2_e": 1000
 }
 
 def set_GG_medium(model, include_glucose=True):
