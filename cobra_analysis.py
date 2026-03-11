@@ -19,7 +19,7 @@ GG_medium = {
 }
 
 def set_GG_medium(model, include_glucose=True):
-    medium = GG_medium_template.copy()
+    medium = GG_medium.copy()
     if not include_glucose:
         medium["EX_glc__D_e"] = 0
     model.medium = medium
