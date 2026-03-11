@@ -30,33 +30,35 @@ def find_secretions(model):
             secretions[met.id] = max_flux
     return secretions
 
-with model:
-    set_lb_medium(model, glucose=False)
-    lb_secretions = find_secretions(model)
+if __name__ == "__main__":
+    model = cobra.io.read_sbml_model(model_path)
+    with model:
+        set_lb_medium(model, glucose=False)
+        lb_secretions = find_secretions(model)
 
-with model:
-    set_lb_medium(model, glucose=True)
-    glc_secretions = find_secretions(model)
+    with model:
+        set_lb_medium(model, glucose=True)
+        glc_secretions = find_secretions(model)
 
-df = pd.DataFrame({
-    "LB_max_secretion": lb_secretions,
-    "LB_glucose_max_secretion": glc_secretions
-}).fillna(0)
+    df = pd.DataFrame({
+        "LB_max_secretion": lb_secretions,
+        "LB_glucose_max_secretion": glc_secretions
+    }).fillna(0)
 
-df["difference"] = df["LB_glucose_max_secretion"] - df["LB_max_secretion"]
+    df["difference"] = df["LB_glucose_max_secretion"] - df["LB_max_secretion"]
 
-df = df.sort_values("difference", ascending=False)
+    df = df.sort_values("difference", ascending=False)
 
-names = {m.id: m.name for m in model.metabolites}
-df["metabolite_name"] = df.index.map(names)
+    names = {m.id: m.name for m in model.metabolites}
+    df["metabolite_name"] = df.index.map(names)
 
-df = df[[
-    "metabolite_name",
-    "LB_max_secretion",
-    "LB_glucose_max_secretion",
-    "difference"
-]]
+    df = df[[
+        "metabolite_name",
+        "LB_max_secretion",
+        "LB_glucose_max_secretion",
+        "difference"
+    ]]
 
-print(df.head(30))
+    print(df.head(30))
 
-df.to_csv("/work/lylab/cjn40747/metabolome/secreted_metabolites_FVA.csv")
+    df.to_csv("/work/lylab/cjn40747/metabolome/secreted_metabolites_FVA.csv")
