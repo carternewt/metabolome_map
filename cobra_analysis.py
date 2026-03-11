@@ -2,7 +2,7 @@ import cobra
 import pandas as pd
 from cobra.flux_analysis import flux_variability_analysis
 
-model_path = "/work/lylab/cjn40747/metabolome/F7_5_GG.xml"
+model_path = "/work/lylab/cjn40747/metabolome/F7_5.xml"
 model = cobra.io.read_sbml_model(model_path)
 
 GG_medium = {

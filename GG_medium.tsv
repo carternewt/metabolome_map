@@ -1,0 +1,11 @@
+medium	description	compound	name
+GG	Glucose + Glutamate medium	EX_glc__D_e	D-Glucose
+GG	Glucose + Glutamate medium	EX_glu__L_e	L-Glutamate
+GG	Glucose + Glutamate medium	EX_mg2_e	Magnesium
+GG	Glucose + Glutamate medium	EX_so4_e	Sulfate
+GG	Glucose + Glutamate medium	EX_k_e	Potassium
+GG	Glucose + Glutamate medium	EX_pi_e	Phosphate
+GG	Glucose + Glutamate medium	EX_na1_e	Sodium
+GG	Glucose + Glutamate medium	EX_cl_e	Chloride
+GG	Glucose + Glutamate medium	EX_ca2_e	Calcium
+GG	Glucose + Glutamate medium	EX_h_e	Protons
