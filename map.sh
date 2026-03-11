@@ -15,7 +15,7 @@ HOME='/home/cjn40747/metabolome_map'
 ml purge
 ml CarveMe/1.6.6
 
-carve -o $OUT/F7_5.xml -v -g GG --mediadb GG_medium.tsv --fbc2 $OUT/F7_5.faa
+carve -o $OUT/F7_5.xml -v -g GG -i GG --mediadb GG_medium.tsv --fbc2 $OUT/F7_5.faa
 
 ml purge 
 
