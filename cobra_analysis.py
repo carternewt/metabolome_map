@@ -19,7 +19,14 @@ GG_medium = {
     "EX_h_e": 1000,
     "EX_co2_e": 1000,
     "EX_nh4_e": 1000,
-    "EX_o2_e": 1000
+    "EX_o2_e": 1000,
+    "EX_cobalt2_e": 1000,
+    "EX_fe2_e": 1000,
+    "EX_fe3_e": 1000,
+    "EX_mn2_e": 1000,
+    "EX_mobd_e": 1000,
+    "EX_ni2_e": 1000,
+    "EX_zn2_e": 1000
 }
 
 def set_GG_medium(model, include_glucose=True):
