@@ -54,6 +54,18 @@ def find_secretions(model):
             secretions[met.id] = max_flux
     return secretions
 
+def find_secretions_fba(model):
+    sol = model.optimize()
+    growth = sol.objective_value
+    print("FBA Growth rate:", growth)
+    secretions = {}
+    for rxn in model.exchanges:
+        flux = sol.fluxes[rxn.id]
+        if flux > 1e-6:
+            met = list(rxn.metabolites.keys())[0]
+            secretions[met.id] = flux
+    return secretions
+
 if __name__ == "__main__":
     model = cobra.io.read_sbml_model(model_path)
     with model:
@@ -63,6 +75,14 @@ if __name__ == "__main__":
     with model:
         set_GG_medium(model, include_glucose=True)
         secretions_with_glc = find_secretions(model)
+    
+    with model:
+        set_GG_medium(model, include_glucose=False)
+        fba_no_glc = find_secretions_fba(model)
+
+    with model:
+        set_GG_medium(model, include_glucose=True)
+        fba_with_glc = find_secretions_fba(model)
 
     df = pd.DataFrame({
         "GG_max_secretion": secretions_no_glc,
@@ -86,3 +106,26 @@ if __name__ == "__main__":
     print(df.head(30))
 
     df.to_csv("/work/lylab/cjn40747/metabolome/secreted_metabolites_FVA.csv")
+
+    df_fba = pd.DataFrame({
+    "GG_FBA_secretion": fba_no_glc,
+    "GG_glucose_FBA_secretion": fba_with_glc
+    }).fillna(0)
+
+    df_fba["difference"] = df_fba["GG_glucose_FBA_secretion"] - df_fba["GG_FBA_secretion"]
+
+    df_fba = df_fba.sort_values("difference", ascending=False)
+
+    names = {m.id: m.name for m in model.metabolites}
+    df_fba["metabolite_name"] = df_fba.index.map(names)
+
+    df_fba = df_fba[[
+        "metabolite_name",
+        "GG_FBA_secretion",
+        "GG_glucose_FBA_secretion",
+        "difference"
+    ]]
+
+    print(df_fba.head(30))
+
+    df_fba.to_csv("/work/lylab/cjn40747/metabolome/secreted_metabolites_FBA.csv")
