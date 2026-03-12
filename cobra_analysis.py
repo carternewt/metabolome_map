@@ -78,10 +78,12 @@ if __name__ == "__main__":
     
     with model:
         set_GG_medium(model, include_glucose=False)
+        model.reactions.EX_o2_e.lower_bound = -5
         fba_no_glc = find_secretions_fba(model)
 
     with model:
         set_GG_medium(model, include_glucose=True)
+        model.reactions.EX_o2_e.lower_bound = -5
         fba_with_glc = find_secretions_fba(model)
 
     df = pd.DataFrame({
