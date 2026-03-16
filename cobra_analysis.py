@@ -64,7 +64,6 @@ CDB_medium = {
     "EX_val__L_e": 5,
     "EX_thm_e": 0.1,
     "EX_ribflv_e": 0.1,
-    "EX_pnto__R_e": 0.1,
     "EX_btn_e": 0.01,
     "EX_fol_e": 0.01,
     "EX_ade_e": 1,
