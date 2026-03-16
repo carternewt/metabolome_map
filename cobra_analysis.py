@@ -68,7 +68,16 @@ CDB_medium = {
     "EX_fol_e": 0.01,
     "EX_ade_e": 1,
     "EX_gua_e": 1,
-    "EX_uri_e": 1
+    "EX_uri_e": 1,
+    "EX_o2_e": 1000,
+    "EX_cobalt2_e": 1000,
+    "EX_cu2_e": 1000,
+    "EX_fe2_e": 1000,
+    "EX_fe3_e": 1000,
+    "EX_mn2_e": 1000,
+    "EX_mobd_e": 1000,
+    "EX_ni2_e": 1000,
+    "EX_zn2_e": 1000
 }
 
 def set_GG_medium(model, include_glucose=True):
