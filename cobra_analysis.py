@@ -2,7 +2,7 @@ import cobra
 import pandas as pd
 from cobra.flux_analysis import flux_variability_analysis
 
-model_path = "/work/lylab/cjn40747/metabolome/F7_5.xml"
+model_path = "/work/lylab/cjn40747/metabolome/F7_5_GG.xml"
 model = cobra.io.read_sbml_model(model_path)
 
 GG_medium = {
@@ -174,6 +174,9 @@ if __name__ == "__main__":
 
     df_fba.to_csv("/work/lylab/cjn40747/metabolome/secreted_metabolites_FBA_GG.csv")
 
+
+model_path = "/work/lylab/cjn40747/metabolome/F7_5_CDB.xml"
+model = cobra.io.read_sbml_model(model_path)
 
 def set_CDB_medium(model, include_glucose=True):
     medium = CDB_medium.copy()
