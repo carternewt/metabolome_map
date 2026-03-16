@@ -158,7 +158,7 @@ if __name__ == "__main__":
 
     print(df.head(30))
 
-    df.to_csv("/work/lylab/cjn40747/metabolome/secreted_metabolites_FVA_GG.csv")
+    df.to_csv("/work/lylab/cjn40747/metabolome/F7_5_secreted_metabolites_FVA_GG.csv")
 
     df_fba = pd.DataFrame({
     "GG_FBA_secretion": fba_no_glc,
@@ -181,7 +181,7 @@ if __name__ == "__main__":
 
     print(df_fba.head(30))
 
-    df_fba.to_csv("/work/lylab/cjn40747/metabolome/secreted_metabolites_FBA_GG.csv")
+    df_fba.to_csv("/work/lylab/cjn40747/metabolome/F7_5_secreted_metabolites_FBA_GG.csv")
 
 
 model_path = "/work/lylab/cjn40747/metabolome/F7_5_CDB.xml"
@@ -265,7 +265,7 @@ if __name__ == "__main__":
 
     print(df.head(30))
 
-    df.to_csv("/work/lylab/cjn40747/metabolome/secreted_metabolites_FVA_CDB.csv")
+    df.to_csv("/work/lylab/cjn40747/metabolome/F7_5_secreted_metabolites_FVA_CDB.csv")
 
     df_fba = pd.DataFrame({
     "CDB_FBA_secretion": fba_no_glc,
@@ -288,4 +288,4 @@ if __name__ == "__main__":
 
     print(df_fba.head(30))
 
-    df_fba.to_csv("/work/lylab/cjn40747/metabolome/secreted_metabolites_FBA_CDB.csv")
+    df_fba.to_csv("/work/lylab/cjn40747/metabolome/F7_5_secreted_metabolites_FBA_CDB.csv")
