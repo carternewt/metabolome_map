@@ -156,7 +156,9 @@ if __name__ == "__main__":
         "difference"
     ]]
 
-    print(df.head(30))
+    df["fold_change"] = (df["GG_glucose_max_secretion"] + 1e-6) / (df["GG_max_secretion"] + 1e-6)
+
+    df_fva_filtered = df[(df_fva["difference"] >= 5) & (df["GG_glucose_max_secretion"] >= 2) & (df["fold_change"] >= 2)]
 
     df.to_csv("/work/lylab/cjn40747/metabolome/F7_5_secreted_metabolites_FVA_GG.csv")
 
@@ -164,9 +166,8 @@ if __name__ == "__main__":
     "GG_FBA_secretion": fba_no_glc,
     "GG_glucose_FBA_secretion": fba_with_glc
     }).fillna(0)
-
+    
     df_fba["difference"] = df_fba["GG_glucose_FBA_secretion"] - df_fba["GG_FBA_secretion"]
-
     df_fba = df_fba.sort_values("difference", ascending=False)
 
     names = {m.id: m.name for m in model.metabolites}
@@ -179,7 +180,9 @@ if __name__ == "__main__":
         "difference"
     ]]
 
-    print(df_fba.head(30))
+    df_fba_filtered = df_fba[
+    (df_fba["difference"] >= 2) &
+    (df_fba["GG_glucose_FBA_secretion"] >= 1)]
 
     df_fba.to_csv("/work/lylab/cjn40747/metabolome/F7_5_secreted_metabolites_FBA_GG.csv")
 
@@ -263,7 +266,9 @@ if __name__ == "__main__":
         "difference"
     ]]
 
-    print(df.head(30))
+    df["fold_change"] = (df["GG_glucose_max_secretion"] + 1e-6) / (df["GG_max_secretion"] + 1e-6)
+
+    df_fva_filtered = df[(df_fva["difference"] >= 5) & (df["GG_glucose_max_secretion"] >= 2) & (df["fold_change"] >= 2)]
 
     df.to_csv("/work/lylab/cjn40747/metabolome/F7_5_secreted_metabolites_FVA_CDB.csv")
 
@@ -286,6 +291,8 @@ if __name__ == "__main__":
         "difference"
     ]]
 
-    print(df_fba.head(30))
+    df_fba_filtered = df_fba[
+    (df_fba["difference"] >= 2) &
+    (df_fba["GG_glucose_FBA_secretion"] >= 1)]
 
     df_fba.to_csv("/work/lylab/cjn40747/metabolome/F7_5_secreted_metabolites_FBA_CDB.csv")
