@@ -1,10 +1,12 @@
 import cobra
 import pandas as pd
 import sys
+import os
 from cobra.flux_analysis import flux_variability_analysis
 
 model_path = sys.argv[1]
 model = cobra.io.read_sbml_model(model_path)
+base=os.path.basename(model_path.replace(".xml", ""))
 
 GG_medium = {
     "EX_glc__D_e": 10,
@@ -175,8 +177,8 @@ if __name__ == "__main__":
 
     df_fva_filtered = df[(df["difference"] >= 4) & (df["CDB_glucose_max_secretion"] >= 2) & (df["fold_change"] >= 2)]
 
-    df_fva_filtered.to_csv("/work/lylab/cjn40747/metabolome/F7_5_secreted_metabolites_FVA_CDB_filtered.csv")
-    df.to_csv("/work/lylab/cjn40747/metabolome/F7_5_secreted_metabolites_FVA_CDB.csv")
+    df_fva_filtered.to_csv("/work/lylab/cjn40747/metabolome/{base}_filtered_CDB.csv")
+    df.to_csv("/work/lylab/cjn40747/metabolome/{base}_CDB.csv")
 
     df_fba = pd.DataFrame({
     "CDB_FBA_secretion": fba_no_glc,
@@ -201,5 +203,5 @@ if __name__ == "__main__":
     (df_fba["difference"] >= 2) &
     (df_fba["CDB_glucose_FBA_secretion"] >= 1)]
 
-    df_fba_filtered.to_csv("/work/lylab/cjn40747/metabolome/F7_5_secreted_metabolites_FBA_CDB_filtered.csv")
-    df_fba.to_csv("/work/lylab/cjn40747/metabolome/F7_5_secreted_metabolites_FBA_CDB.csv")
+    df_fba_filtered.to_csv("/work/lylab/cjn40747/metabolome/{base}_filtered_CDB.csv")
+    df_fba.to_csv("/work/lylab/cjn40747/metabolome/{base}_CDB.csv")
