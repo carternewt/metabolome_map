@@ -15,10 +15,12 @@ HOME='/home/cjn40747/metabolome_map'
 ml purge
 ml CarveMe/1.6.6
 
-find $OUT/type_strains/ -name *.faa -type f | while read -r file; do
+find "$OUT/type_strains" -name "*.faa" -type f | while read -r file; do
     base=$(basename "$file" .faa)
-    carve -o $OUT/"$base"_GG.xml -v -g GG --mediadb $HOME/GG_medium.tsv --fbc2 $file
-    carve -o $OUT/"$base"_CDB.xml -v -g CDB --mediadb $HOME/GG_medium.tsv --fbc2 $file
+    GG_model="$OUT/${base}_GG.xml"
+    CDB_model="$OUT/${base}_CDB.xml"
+    carve -o $GG_model -v -g GG --mediadb $HOME/GG_medium.tsv --fbc2 $file
+    carve -o $CDB_model -v -g CDB --mediadb $HOME/GG_medium.tsv --fbc2 $file
 done
 
 ml purge 
