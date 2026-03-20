@@ -14,11 +14,12 @@ HOME='/home/cjn40747/metabolome_map'
 
 ml purge
 ml CarveMe/1.6.6
-
-carve -o $OUT/F7_5_GG.xml -v -g GG --mediadb $HOME/GG_medium.tsv --fbc2 $OUT/F7_5.faa
-carve -o $OUT/F7_5_CDB.xml -v -g CDB --mediadb $HOME/GG_medium.tsv --fbc2 $OUT/F7_5.faa
-
-ml purge 
-
 source activate cobra
-python cobra_analysis.py
+
+find $OUT/type_strains -name *.faa -type f | while read -r file; do
+    base=$(basename "$file" .faa)
+    carve -o $OUT/"$base"_GG.xml -v -g GG --mediadb $HOME/GG_medium.tsv --fbc2 $file
+    carve -o $OUT/"$base"_CDB.xml -v -g CDB --mediadb $HOME/GG_medium.tsv --fbc2 $file
+    python cobra_analysisGG.py $OUT/"$base"_GG.xml
+    python cobra_analysisGG.py $OUT/"$base"_CDB.xml
+done
