@@ -93,7 +93,7 @@ def find_secretions(model):
     fva = flux_variability_analysis(
         model,
         reaction_list=[rxn.id for rxn in model.exchanges],
-        fraction_of_optimum=0.9
+        fraction_of_optimum=0.99
     )
     secretions = {}
     for rxn in model.exchanges:
@@ -120,21 +120,29 @@ if __name__ == "__main__":
     with model:
         set_GG_medium(model, include_glucose=False)
         model.reactions.EX_o2_e.lower_bound = -5
+        model.reactions.EX_h_e.lower_bound = -10
+        model.reactions.EX_h_e.upper_bound = 10
         secretions_no_glc = find_secretions(model)
 
     with model:
         set_GG_medium(model, include_glucose=True)
         model.reactions.EX_o2_e.lower_bound = -5
+        model.reactions.EX_h_e.lower_bound = -10
+        model.reactions.EX_h_e.upper_bound = 10
         secretions_with_glc = find_secretions(model)
     
     with model:
         set_GG_medium(model, include_glucose=False)
         model.reactions.EX_o2_e.lower_bound = -5
+        model.reactions.EX_h_e.lower_bound = -10
+        model.reactions.EX_h_e.upper_bound = 10
         fba_no_glc = find_secretions_fba(model)
 
     with model:
         set_GG_medium(model, include_glucose=True)
         model.reactions.EX_o2_e.lower_bound = -5
+        model.reactions.EX_h_e.lower_bound = -10
+        model.reactions.EX_h_e.upper_bound = 10
         fba_with_glc = find_secretions_fba(model)
 
     df = pd.DataFrame({
@@ -158,7 +166,7 @@ if __name__ == "__main__":
 
     df["fold_change"] = (df["GG_glucose_max_secretion"] + 1e-6) / (df["GG_max_secretion"] + 1e-6)
 
-    df_fva_filtered = df[(df["difference"] >= 5) & (df["GG_glucose_max_secretion"] >= 2) & (df["fold_change"] >= 2)]
+    df_fva_filtered = df[(df["difference"] >= 4) & (df["GG_glucose_max_secretion"] >= 2) & (df["fold_change"] >= 2)]
 
     df_fva_filtered.to_csv("/work/lylab/cjn40747/metabolome/F7_5_secreted_metabolites_FVA_GG_filtered.csv")
     df.to_csv("/work/lylab/cjn40747/metabolome/F7_5_secreted_metabolites_FVA_GG.csv")
@@ -205,7 +213,7 @@ def find_secretions(model):
     fva = flux_variability_analysis(
         model,
         reaction_list=[rxn.id for rxn in model.exchanges],
-        fraction_of_optimum=0.9
+        fraction_of_optimum=0.99
     )
     secretions = {}
     for rxn in model.exchanges:
@@ -232,21 +240,29 @@ if __name__ == "__main__":
     with model:
         set_CDB_medium(model, include_glucose=False)
         model.reactions.EX_o2_e.lower_bound = -5
+        model.reactions.EX_h_e.lower_bound = -10
+        model.reactions.EX_h_e.upper_bound = 10
         secretions_no_glc = find_secretions(model)
 
     with model:
         set_CDB_medium(model, include_glucose=True)
         model.reactions.EX_o2_e.lower_bound = -5
+        model.reactions.EX_h_e.lower_bound = -10
+        model.reactions.EX_h_e.upper_bound = 10
         secretions_with_glc = find_secretions(model)
     
     with model:
         set_CDB_medium(model, include_glucose=False)
         model.reactions.EX_o2_e.lower_bound = -5
+        model.reactions.EX_h_e.lower_bound = -10
+        model.reactions.EX_h_e.upper_bound = 10
         fba_no_glc = find_secretions_fba(model)
 
     with model:
         set_CDB_medium(model, include_glucose=True)
         model.reactions.EX_o2_e.lower_bound = -5
+        model.reactions.EX_h_e.lower_bound = -10
+        model.reactions.EX_h_e.upper_bound = 10
         fba_with_glc = find_secretions_fba(model)
 
     df = pd.DataFrame({
@@ -270,7 +286,7 @@ if __name__ == "__main__":
 
     df["fold_change"] = (df["CDB_glucose_max_secretion"] + 1e-6) / (df["CDB_max_secretion"] + 1e-6)
 
-    df_fva_filtered = df[(df["difference"] >= 5) & (df["CDB_glucose_max_secretion"] >= 2) & (df["fold_change"] >= 2)]
+    df_fva_filtered = df[(df["difference"] >= 4) & (df["CDB_glucose_max_secretion"] >= 2) & (df["fold_change"] >= 2)]
 
     df_fva_filtered.to_csv("/work/lylab/cjn40747/metabolome/F7_5_secreted_metabolites_FVA_CDB_filtered.csv")
     df.to_csv("/work/lylab/cjn40747/metabolome/F7_5_secreted_metabolites_FVA_CDB.csv")
