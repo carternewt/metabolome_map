@@ -12,7 +12,7 @@
 OUT='/work/lylab/cjn40747/metabolome'
 HOME='/home/cjn40747/metabolome_map'
 
-find $OUT/type_strains -name *.faa -type f | while read -r file; do
+find $OUT/type_strains/ -name *.faa -type f | while read -r file; do
     ml purge
     ml CarveMe/1.6.6
     base=$(basename "$file" .faa)
