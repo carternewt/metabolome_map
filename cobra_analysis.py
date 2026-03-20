@@ -16,7 +16,6 @@ GG_medium = {
     "EX_cl_e": 1000,
     "EX_ca2_e": 1000,
     "EX_h2o_e": 1000,
-    "EX_h_e": 1000,
     "EX_co2_e": 1000,
     "EX_nh4_e": 1000,
     "EX_hco3_e": 1000,
@@ -35,7 +34,6 @@ CDB_medium = {
     "EX_glc__D_e": 10,
     "EX_k_e": 1000,
     "EX_pi_e": 1000,
-    "EX_h_e": 1000,
     "EX_mg2_e": 1000,
     "EX_so4_e": 1000,
     "EX_h2o_e": 1000,
@@ -110,7 +108,7 @@ def find_secretions_fba(model):
     secretions = {}
     for rxn in model.exchanges:
         flux = sol.fluxes[rxn.id]
-        if flux > 1e-6:
+        if flux > 1e-3:
             met = list(rxn.metabolites.keys())[0]
             secretions[met.id] = flux
     return secretions
@@ -122,6 +120,8 @@ if __name__ == "__main__":
         model.reactions.EX_o2_e.lower_bound = -5
         model.reactions.EX_h_e.lower_bound = -10
         model.reactions.EX_h_e.upper_bound = 10
+        model.reactions.EX_co2_e.lower_bound = -5
+        model.reactions.EX_hco3_e.lower_bound = -5
         secretions_no_glc = find_secretions(model)
 
     with model:
@@ -129,6 +129,8 @@ if __name__ == "__main__":
         model.reactions.EX_o2_e.lower_bound = -5
         model.reactions.EX_h_e.lower_bound = -10
         model.reactions.EX_h_e.upper_bound = 10
+        model.reactions.EX_co2_e.lower_bound = -5
+        model.reactions.EX_hco3_e.lower_bound = -5
         secretions_with_glc = find_secretions(model)
     
     with model:
@@ -136,6 +138,8 @@ if __name__ == "__main__":
         model.reactions.EX_o2_e.lower_bound = -5
         model.reactions.EX_h_e.lower_bound = -10
         model.reactions.EX_h_e.upper_bound = 10
+        model.reactions.EX_co2_e.lower_bound = -5
+        model.reactions.EX_hco3_e.lower_bound = -5
         fba_no_glc = find_secretions_fba(model)
 
     with model:
@@ -143,6 +147,8 @@ if __name__ == "__main__":
         model.reactions.EX_o2_e.lower_bound = -5
         model.reactions.EX_h_e.lower_bound = -10
         model.reactions.EX_h_e.upper_bound = 10
+        model.reactions.EX_co2_e.lower_bound = -5
+        model.reactions.EX_hco3_e.lower_bound = -5
         fba_with_glc = find_secretions_fba(model)
 
     df = pd.DataFrame({
@@ -230,7 +236,7 @@ def find_secretions_fba(model):
     secretions = {}
     for rxn in model.exchanges:
         flux = sol.fluxes[rxn.id]
-        if flux > 1e-6:
+        if flux > 1e-3:
             met = list(rxn.metabolites.keys())[0]
             secretions[met.id] = flux
     return secretions
@@ -242,6 +248,8 @@ if __name__ == "__main__":
         model.reactions.EX_o2_e.lower_bound = -5
         model.reactions.EX_h_e.lower_bound = -10
         model.reactions.EX_h_e.upper_bound = 10
+        model.reactions.EX_co2_e.lower_bound = -5
+        model.reactions.EX_hco3_e.lower_bound = -5
         secretions_no_glc = find_secretions(model)
 
     with model:
@@ -249,6 +257,8 @@ if __name__ == "__main__":
         model.reactions.EX_o2_e.lower_bound = -5
         model.reactions.EX_h_e.lower_bound = -10
         model.reactions.EX_h_e.upper_bound = 10
+        model.reactions.EX_co2_e.lower_bound = -5
+        model.reactions.EX_hco3_e.lower_bound = -5
         secretions_with_glc = find_secretions(model)
     
     with model:
@@ -256,6 +266,8 @@ if __name__ == "__main__":
         model.reactions.EX_o2_e.lower_bound = -5
         model.reactions.EX_h_e.lower_bound = -10
         model.reactions.EX_h_e.upper_bound = 10
+        model.reactions.EX_co2_e.lower_bound = -5
+        model.reactions.EX_hco3_e.lower_bound = -5
         fba_no_glc = find_secretions_fba(model)
 
     with model:
@@ -263,6 +275,8 @@ if __name__ == "__main__":
         model.reactions.EX_o2_e.lower_bound = -5
         model.reactions.EX_h_e.lower_bound = -10
         model.reactions.EX_h_e.upper_bound = 10
+        model.reactions.EX_co2_e.lower_bound = -5
+        model.reactions.EX_hco3_e.lower_bound = -5
         fba_with_glc = find_secretions_fba(model)
 
     df = pd.DataFrame({

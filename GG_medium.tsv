@@ -10,7 +10,6 @@ GG	Glucose Glutamate Medium	cl	Chloride
 GG	Glucose Glutamate Medium	ca2	Calcium
 GG	Glucose Glutamate Medium	h2o	Water
 GG	Glucose Glutamate Medium	o2	Oxygen
-GG	Glucose Glutamate Medium	h	Proton
 GG	Glucose Glutamate Medium	co2	Carbon dioxide
 GG	Glucose Glutamate Medium	nh4	Ammonium
 GG	Glucose Glutamate Medium	hco3	Bicarbonate
@@ -25,7 +24,6 @@ GG	Glucose Glutamate Medium	zn2	Zinc
 CDB	CDB Differentiating Media	glc__D	D-Glucose
 CDB	CDB Differentiating Media	k	Potassium
 CDB	CDB Differentiating Media	pi	Phosphate
-CDB	CDB Differentiating Media	h	Proton
 CDB	CDB Differentiating Media	mg2	Magnesium
 CDB	CDB Differentiating Media	so4	Sulfate
 CDB	CDB Differentiating Media	h2o	Water
