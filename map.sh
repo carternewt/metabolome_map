@@ -12,14 +12,22 @@
 OUT='/work/lylab/cjn40747/metabolome'
 HOME='/home/cjn40747/metabolome_map'
 
+ml purge
+ml CarveMe/1.6.6
+
 find $OUT/type_strains/ -name *.faa -type f | while read -r file; do
-    ml purge
-    ml CarveMe/1.6.6
     base=$(basename "$file" .faa)
     carve -o $OUT/"$base"_GG.xml -v -g GG --mediadb $HOME/GG_medium.tsv --fbc2 $file
     carve -o $OUT/"$base"_CDB.xml -v -g CDB --mediadb $HOME/GG_medium.tsv --fbc2 $file
-    ml purge 
-    source activate cobra
-    python cobra_analysisGG.py $OUT/"$base"_GG.xml
-    python cobra_analysisGG.py $OUT/"$base"_CDB.xml
+done
+
+ml purge 
+source activate cobra
+
+find $OUT -name *_CDB.xml -type f | while read -r file; do
+    python cobra_analysis_CDB.py $file
+done
+
+find $OUT -name *_GG.xml -type f | while read -r file; do
+    python cobra_analysis_GG.py $file
 done
