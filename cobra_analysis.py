@@ -117,7 +117,7 @@ if __name__ == "__main__":
     model = cobra.io.read_sbml_model(model_path)
     with model:
         set_GG_medium(model, include_glucose=False)
-        model.reactions.EX_o2_e.lower_bound = -1000
+        model.reactions.EX_o2_e.lower_bound = -10
         model.reactions.EX_h_e.lower_bound = -10
         model.reactions.EX_h_e.upper_bound = 10
         model.reactions.EX_co2_e.lower_bound = -5
@@ -126,7 +126,7 @@ if __name__ == "__main__":
 
     with model:
         set_GG_medium(model, include_glucose=True)
-        model.reactions.EX_o2_e.lower_bound = -1000
+        model.reactions.EX_o2_e.lower_bound = -10
         model.reactions.EX_h_e.lower_bound = -10
         model.reactions.EX_h_e.upper_bound = 10
         model.reactions.EX_co2_e.lower_bound = -5
@@ -135,7 +135,7 @@ if __name__ == "__main__":
     
     with model:
         set_GG_medium(model, include_glucose=False)
-        model.reactions.EX_o2_e.lower_bound = -1000
+        model.reactions.EX_o2_e.lower_bound = -10
         model.reactions.EX_h_e.lower_bound = -10
         model.reactions.EX_h_e.upper_bound = 10
         model.reactions.EX_co2_e.lower_bound = -5
@@ -144,7 +144,7 @@ if __name__ == "__main__":
 
     with model:
         set_GG_medium(model, include_glucose=True)
-        model.reactions.EX_o2_e.lower_bound = -1000
+        model.reactions.EX_o2_e.lower_bound = -10
         model.reactions.EX_h_e.lower_bound = -10
         model.reactions.EX_h_e.upper_bound = 10
         model.reactions.EX_co2_e.lower_bound = -5
@@ -245,7 +245,7 @@ if __name__ == "__main__":
     model = cobra.io.read_sbml_model(model_path)
     with model:
         set_CDB_medium(model, include_glucose=False)
-        model.reactions.EX_o2_e.lower_bound = -1000
+        model.reactions.EX_o2_e.lower_bound = -10
         model.reactions.EX_h_e.lower_bound = -10
         model.reactions.EX_h_e.upper_bound = 10
         model.reactions.EX_co2_e.lower_bound = -5
@@ -254,7 +254,7 @@ if __name__ == "__main__":
 
     with model:
         set_CDB_medium(model, include_glucose=True)
-        model.reactions.EX_o2_e.lower_bound = -1000
+        model.reactions.EX_o2_e.lower_bound = -10
         model.reactions.EX_h_e.lower_bound = -10
         model.reactions.EX_h_e.upper_bound = 10
         model.reactions.EX_co2_e.lower_bound = -5
@@ -263,7 +263,7 @@ if __name__ == "__main__":
     
     with model:
         set_CDB_medium(model, include_glucose=False)
-        model.reactions.EX_o2_e.lower_bound = -1000
+        model.reactions.EX_o2_e.lower_bound = -10
         model.reactions.EX_h_e.lower_bound = -10
         model.reactions.EX_h_e.upper_bound = 10
         model.reactions.EX_co2_e.lower_bound = -5
@@ -272,7 +272,7 @@ if __name__ == "__main__":
 
     with model:
         set_CDB_medium(model, include_glucose=True)
-        model.reactions.EX_o2_e.lower_bound = -1000
+        model.reactions.EX_o2_e.lower_bound = -10
         model.reactions.EX_h_e.lower_bound = -10
         model.reactions.EX_h_e.upper_bound = 10
         model.reactions.EX_co2_e.lower_bound = -5
