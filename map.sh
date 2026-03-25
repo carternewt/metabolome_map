@@ -20,7 +20,8 @@ find "$OUT/type_strains" -name "*.faa" -type f | while read -r file; do
     GG_model="$OUT/${base}_GG.xml"
     CDB_model="$OUT/${base}_CDB.xml"
     carve -o $GG_model -v -g GG --mediadb $HOME/GG_medium.tsv --fbc2 $file
-    carve -o $CDB_model -v -g CDB --mediadb $HOME/GG_medium.tsv --fbc2 $file
+    carve -o $CDB_modells
+     -v -g CDB --mediadb $HOME/GG_medium.tsv --fbc2 $file
 done
 
 ml purge 

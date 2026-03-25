@@ -203,5 +203,5 @@ if __name__ == "__main__":
     (df_fba["difference"] >= 2) &
     (df_fba["CDB_glucose_FBA_secretion"] >= 1)]
 
-    df_fba_filtered.to_csv("/work/lylab/cjn40747/metabolome/{base}_filtered_CDB.csv")
-    df_fba.to_csv("/work/lylab/cjn40747/metabolome/{base}_CDB.csv")
+    df_fba_filtered.to_csv(f"/work/lylab/cjn40747/metabolome/{base}_filtered_CDB.csv")
+    df_fba.to_csv(f"/work/lylab/cjn40747/metabolome/{base}_CDB.csv")
