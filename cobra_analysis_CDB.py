@@ -177,8 +177,8 @@ if __name__ == "__main__":
 
     df_fva_filtered = df[(df["difference"] >= 4) & (df["CDB_glucose_max_secretion"] >= 2) & (df["fold_change"] >= 2)]
 
-    df_fva_filtered.to_csv("/work/lylab/cjn40747/metabolome/{base}_filtered_FVA_CDB.csv")
-    df.to_csv("/work/lylab/cjn40747/metabolome/{base}_FVA_CDB.csv")
+    df_fva_filtered.to_csv(f"/work/lylab/cjn40747/metabolome/{base}_filtered_FVA_CDB.csv")
+    df.to_csv(f"/work/lylab/cjn40747/metabolome/{base}_FVA_CDB.csv")
 
     df_fba = pd.DataFrame({
     "CDB_FBA_secretion": fba_no_glc,
