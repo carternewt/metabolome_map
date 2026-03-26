@@ -23,7 +23,6 @@ CDB_medium = {
     "EX_cl_e": 1000,
     "EX_nh4_e": 1000,
     "EX_ca2_e": 1000,
-    "EX_hco3_e": 1000,
     "EX_ala__L_e": 0.1,
     "EX_arg__L_e": 0.1,
     "EX_asn__L_e": 0.1,
