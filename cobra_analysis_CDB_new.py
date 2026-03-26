@@ -95,6 +95,10 @@ def constrain_growth(model, fraction=0.9):
     sol = model.optimize()
     growth = sol.objective_value
 
+    if growth < 1e-6:
+        print("WARNING: No growth detected, skipping biomass constraint")
+        return growth
+
     biomass = get_biomass_reaction(model)
 
     biomass.lower_bound = growth * fraction
@@ -129,15 +133,15 @@ def run_condition(model, include_glc):
     with model:
         set_medium(model, include_glc)
 
-        # optional gas constraints (keep consistent but minimal)
         model.reactions.EX_o2_e.lower_bound = -10
         model.reactions.EX_co2_e.lower_bound = -5
         model.reactions.EX_hco3_e.lower_bound = -5
 
-        constrain_growth(model)
-        
-        sol = model.optimize()
-        print("Growth:", sol.objective_value)
+        growth = constrain_growth(model)
+
+        if growth < 1e-6:
+            print("No growth → skipping secretion calculation")
+            return {}
 
         return get_secretions(model)
 
