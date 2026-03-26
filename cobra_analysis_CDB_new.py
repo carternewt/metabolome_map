@@ -47,6 +47,7 @@ CDB_medium = {
     "EX_btn_e": 0.01,
     "EX_fol_e": 0.01,
     "EX_o2_e": 1000,
+    "EX_h_e": 1000
 }
 
 def get_biomass_reaction(model):
@@ -82,10 +83,19 @@ def get_biomass_reaction(model):
 
 
 def set_medium(model, include_glucose=True):
-    m = CDB_medium.copy()
-    if not include_glucose:
-        m["EX_glc__D_e"] = 0
-    model.medium = m
+    # start from current model medium (critical)
+    medium = model.medium.copy()
+
+    # update only the nutrients you care about
+    for rxn, value in CDB_medium.items():
+        if rxn in model.reactions:
+            medium[rxn] = value
+
+    # handle glucose toggle
+    if not include_glucose and "EX_glc__D_e" in medium:
+        medium["EX_glc__D_e"] = 0
+
+    model.medium = medium
 
 
 # ----------------------------
