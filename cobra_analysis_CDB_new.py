@@ -62,10 +62,17 @@ def set_medium(model, include_glucose=True):
 # ----------------------------
 def constrain_growth(model, fraction=0.9):
     sol = model.optimize()
-    growth = sol.objective_value
-    model.reactions.BIOMASS.lower_bound = growth * fraction
-    model.reactions.BIOMASS.upper_bound = growth * fraction
-    return growth
+
+    biomass_rxns = [r for r in model.reactions if "biomass" in r.id.lower()]
+    if not biomass_rxns:
+        raise ValueError("No biomass reaction found")
+
+    biomass = biomass_rxns[0]
+
+    biomass.lower_bound = sol.objective_value * fraction
+    biomass.upper_bound = sol.objective_value * fraction
+
+    return sol.objective_value
 
 
 # ----------------------------
