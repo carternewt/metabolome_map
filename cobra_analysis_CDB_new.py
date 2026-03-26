@@ -135,6 +135,9 @@ def run_condition(model, include_glc):
         model.reactions.EX_hco3_e.lower_bound = -5
 
         constrain_growth(model)
+        
+        sol = model.optimize()
+        print("Growth:", sol.objective_value)
 
         return get_secretions(model)
 
