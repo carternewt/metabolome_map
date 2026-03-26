@@ -24,24 +24,24 @@ CDB_medium = {
     "EX_nh4_e": 1000,
     "EX_ca2_e": 1000,
     "EX_hco3_e": 1000,
-    "EX_ala__L_e": 5,
-    "EX_arg__L_e": 5,
-    "EX_asn__L_e": 5,
-    "EX_asp__L_e": 5,
-    "EX_glu__L_e": 5,
-    "EX_gly_e": 5,
-    "EX_his__L_e": 5,
-    "EX_ile__L_e": 5,
-    "EX_leu__L_e": 5,
-    "EX_lys__L_e": 5,
-    "EX_met__L_e": 5,
-    "EX_phe__L_e": 5,
-    "EX_pro__L_e": 5,
-    "EX_ser__L_e": 5,
-    "EX_thr__L_e": 5,
-    "EX_trp__L_e": 5,
-    "EX_tyr__L_e": 5,
-    "EX_val__L_e": 5,
+    "EX_ala__L_e": 0.1,
+    "EX_arg__L_e": 0.1,
+    "EX_asn__L_e": 0.1,
+    "EX_asp__L_e": 0.1,
+    "EX_glu__L_e": 0.1,
+    "EX_gly_e": 0.1,
+    "EX_his__L_e": 0.1,
+    "EX_ile__L_e": 0.1,
+    "EX_leu__L_e": 0.1,
+    "EX_lys__L_e": 0.1,
+    "EX_met__L_e": 0.1,
+    "EX_phe__L_e": 0.1,
+    "EX_pro__L_e": 0.1,
+    "EX_ser__L_e": 0.1,
+    "EX_thr__L_e": 0.1,
+    "EX_trp__L_e": 0.1,
+    "EX_tyr__L_e": 0.1,
+    "EX_val__L_e": 0.1,
     "EX_thm_e": 0.1,
     "EX_ribflv_e": 0.1,
     "EX_btn_e": 0.01,
@@ -154,6 +154,8 @@ def run_condition(model, include_glc):
             return {}
 
         return get_secretions(model)
+    
+    
 
 
 # ----------------------------
