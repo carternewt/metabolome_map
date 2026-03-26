@@ -82,7 +82,7 @@ def get_biomass_reaction(model):
 
 
 def set_medium(model, include_glucose=True):
-    medium = {}
+    medium = {rxn.id: 0 for rxn in model.exchanges}
 
     # only include what YOU define
     for rxn, value in CDB_medium.items():
