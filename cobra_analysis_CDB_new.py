@@ -82,15 +82,13 @@ def get_biomass_reaction(model):
 
 
 def set_medium(model, include_glucose=True):
-    # start from current model medium (critical)
-    medium = model.medium.copy()
+    medium = {}
 
-    # update only the nutrients you care about
+    # only include what YOU define
     for rxn, value in CDB_medium.items():
         if rxn in model.reactions:
             medium[rxn] = value
 
-    # handle glucose toggle
     if not include_glucose and "EX_glc__D_e" in medium:
         medium["EX_glc__D_e"] = 0
 
@@ -203,3 +201,8 @@ df_filtered = df[
 
 df.to_csv(f"/work/lylab/cjn40747/metabolome/{base}_PFBA_secretion.csv")
 df_filtered.to_csv(f"/work/lylab/cjn40747/metabolome/{base}_PFBA_secretion_filtered.csv")
+
+print("Active medium:")
+for k, v in model.medium.items():
+    if v > 0:
+        print(k, v)
