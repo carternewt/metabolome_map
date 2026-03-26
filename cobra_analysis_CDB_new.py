@@ -49,6 +49,37 @@ CDB_medium = {
     "EX_o2_e": 1000,
 }
 
+def get_biomass_reaction(model):
+    """
+    Robust biomass reaction detection for COBRA/CarveMe models.
+    Priority:
+    1. model.objective (best source)
+    2. search by 'biomass' in id/name
+    """
+
+    # ---- 1. Try objective reaction (most reliable)
+    try:
+        obj_rxns = list(model.objective.variables)
+        if len(obj_rxns) == 1:
+            return model.reactions.get_by_id(obj_rxns[0].name)
+    except Exception:
+        pass
+
+    # ---- 2. Search by annotation/name
+    candidates = [
+        r for r in model.reactions
+        if "biomass" in r.id.lower() or "biomass" in r.name.lower()
+    ]
+
+    if len(candidates) == 1:
+        return candidates[0]
+
+    if len(candidates) > 1:
+        # pick best guess: usually biomass has many metabolites
+        return max(candidates, key=lambda r: len(r.metabolites))
+
+    raise ValueError("No biomass reaction found in model")
+
 
 def set_medium(model, include_glucose=True):
     m = CDB_medium.copy()
@@ -62,17 +93,14 @@ def set_medium(model, include_glucose=True):
 # ----------------------------
 def constrain_growth(model, fraction=0.9):
     sol = model.optimize()
+    growth = sol.objective_value
 
-    biomass_rxns = [r for r in model.reactions if "biomass" in r.id.lower()]
-    if not biomass_rxns:
-        raise ValueError("No biomass reaction found")
+    biomass = get_biomass_reaction(model)
 
-    biomass = biomass_rxns[0]
+    biomass.lower_bound = growth * fraction
+    biomass.upper_bound = growth * fraction
 
-    biomass.lower_bound = sol.objective_value * fraction
-    biomass.upper_bound = sol.objective_value * fraction
-
-    return sol.objective_value
+    return growth
 
 
 # ----------------------------
