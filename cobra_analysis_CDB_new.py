@@ -133,10 +133,6 @@ def run_condition(model, include_glc):
     with model:
         set_CDB_medium(model, include_glc)
 
-        model.reactions.EX_o2_e.lower_bound = -10
-        model.reactions.EX_co2_e.lower_bound = -5
-        model.reactions.EX_hco3_e.lower_bound = -5
-
         growth = constrain_growth(model)
 
         if growth < 1e-6:
