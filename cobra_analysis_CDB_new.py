@@ -3,7 +3,7 @@ import pandas as pd
 import os
 from cobra.flux_analysis import pfba
 
-metadata = pd.read_csv("model_metadata.csv")
+metadata = pd.read_csv("/home/cjn40747/metabolome_map/model_metadata.csv")
 
 # ----------------------------
 # MEDIA (same as yours)
@@ -201,8 +201,8 @@ signatures = final[
     (final["non_dissolver_prevalence"] < 0.3)
 ]
 
-final.to_csv("all_metabolites_comparison.csv")
-signatures.to_csv("calcite_dissolution_signatures.csv")
+final.to_csv("/work/lylab/cjn40747/metabolome/all_metabolites_comparison.csv")
+signatures.to_csv("/work/lylab/cjn40747/metabolome/calcite_dissolution_signatures.csv")
 
 print("\nTop candidate metabolites:")
 print(signatures.sort_values("difference", ascending=False).head(20))

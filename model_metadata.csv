@@ -1,0 +1,10 @@
+model_path,label
+/work/lylab/cjn40747/metabolome/GCF_000236805.1_PPe03_genomic_CDB.xml,dissolver
+/work/lylab/cjn40747/metabolome/GCF_001632305.1_ASM163230v1_genomic_CDB.xml,dissolver
+/work/lylab/cjn40747/metabolome/GCF_004000825.1_ASM400082v1_genomic_CDB.xml,non-dissolver
+/work/lylab/cjn40747/metabolome/GCF_004000925.1_ASM400092v1_genomic_CDB.xml,dissolver
+/work/lylab/cjn40747/metabolome/GCF_004000945.1_ASM400094v1_genomic_CDB.xml,non-dissolver
+/work/lylab/cjn40747/metabolome/GCF_004000985.1_ASM400098v1_genomic_CDB.xml,non-dissolver
+/work/lylab/cjn40747/metabolome/GCF_004001025.1_ASM400102v1_genomic_CDB.xml,dissolver
+/work/lylab/cjn40747/metabolome/GCF_004001045.1_ASM400104v1_genomic_CDB.xml,dissolver
+/work/lylab/cjn40747/metabolome/GCF_004117095.1_ASM411709v1_genomic_CDB.xml,non-dissolver
