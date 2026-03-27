@@ -131,7 +131,7 @@ def get_secretions(model):
 # ----------------------------
 def run_condition(model, include_glc):
     with model:
-        set_medium(model, include_glc)
+        set_CDB_medium(model, include_glc)
 
         model.reactions.EX_o2_e.lower_bound = -10
         model.reactions.EX_co2_e.lower_bound = -5
